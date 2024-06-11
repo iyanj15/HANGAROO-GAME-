@@ -7,7 +7,7 @@ def describe_words():
     print("The words are related to", description)
 
 def choose_word():
-    words = ['apple', 'banana', 'orange', 'grape', 'melon', 'kiwi', 'peach', 'pear', 'plum', 'cherry']
+    words = ['balayan', 'bauan', 'calaca', 'calatagan', 'cuenca', 'lemery', 'lian', 'lipacity', 'lobo', 'mabini', 'nasugbu', 'sanpascual', 'sta.teresita', 'talisay', 'taal', 'tanauan', 'tingloy', 'tuy']
     return random.choice(words)
 
 describe_words()
