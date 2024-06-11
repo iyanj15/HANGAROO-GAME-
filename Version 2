@@ -13,19 +13,19 @@ def choose_level():
    return int(choice)
  
 def describe_words(level):
-   descriptions = {
-       1: "Fruits",
-       2: "Wild Animals",
-       3: "Difficult Words"
-   }
-   print("In this level, the words are related to", descriptions[level])
- 
+    descriptions = {
+        1: "province in Batangas",
+        2: "City in the Philippines",
+        3: "Country in the world"
+    }
+    print("In this level, the words are related to", descriptions[level])
+
 def choose_word(level):
-   words = {
-       1: ['apple', 'banana', 'orange', 'grape', 'melon', 'kiwi', 'peach', 'pear', 'plum', 'cherry'],
-       2: ['elephant', 'tiger', 'lion', 'zebra', 'giraffe', 'hippopotamus', 'rhinoceros', 'kangaroo', 'crocodile', 'monkey'],
-       3: ['abracadabra', 'onomatopoeia', 'xylophone', 'pharaoh', 'rhythm', 'mysterious', 'cryptic', 'pneumonia', 'quicksilver', 'juxtaposition']
-   }
+    words = {
+        1: ['balayan', 'bauan', 'calaca', 'calatagan', 'cuenca', 'lemery', 'lian', 'lipacity', 'lobo', 'mabini', 'nasugbu', 'sanpascual', 'sta.teresita', 'talisay', 'taal', 'tanauan', 'tingloy', 'tuy'],
+        2: ['manila', 'cebu', 'davao', 'iloilo', 'bacolod', 'butuan', 'caloocan', 'makati', 'pasig', 'taguig'],
+        3: ['philippines', 'canada', 'brazil', 'germany', 'france', 'japan', 'australia', 'argentina', 'egypt', 'finland']
+    }
    return random.choice(words[level])
  
  
