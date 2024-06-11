@@ -1,0 +1,85 @@
+import random
+import time
+
+def choose_level():
+   print("WELCOME TO HANGAROO GAME")
+   print("Choose a level:")
+   print("1. Easy")
+   print("2. Medium")
+   print("3. Hard")
+   print("4. Exit the game")
+   choice = input("Enter your choice (1/2/3/4): ")
+   while choice not in ['1', '2', '3', '4']:
+       choice = input("Invalid choice. Please enter 1, 2, 3, or 4: ")
+   return int(choice)
+
+def describe_words(level):
+    descriptions = {
+        1: "province in Batangas",
+        2: "City in the Philippines",
+        3: "Country in the world"
+    }
+    print("In this level, the words are related to", descriptions[level])
+
+def choose_word(level):
+    words = {
+        1: ['balayan', 'bauan', 'calaca', 'calatagan', 'cuenca', 'lemery', 'lian', 'lipacity', 'lobo', 'mabini', 'nasugbu', 'sanpascual', 'sta.teresita', 'talisay', 'taal', 'tanauan', 'tingloy', 'tuy'],
+        2: ['manila', 'cebu', 'davao', 'iloilo', 'bacolod', 'butuan', 'caloocan', 'makati', 'pasig', 'taguig'],
+        3: ['philippines', 'canada', 'brazil', 'germany', 'france', 'japan', 'australia', 'argentina', 'egypt', 'finland']
+    }
+    return random.choice(words[level])
+
+def play_game(level):
+    word = choose_word(level)
+    guessed_letters = []
+    max_life = 10
+    life = max_life
+    start_time = time.time()
+    while life > 0:
+        display_word = ''.join([letter if letter in guessed_letters else '?' for letter in word])
+        print("Word:", display_word)
+        if '?' not in display_word:
+            print("Congratulations! You've guessed the word:", word)
+            break
+        print("Guessed letters:", ', '.join(guessed_letters))
+        print("Life remaining:", life)
+        guess = input("Guess a letter: ").lower()
+        if guess == 'exit':
+            print("Exiting the game...")
+            return
+        if guess in guessed_letters:
+            print("You already guessed that letter!")
+            continue
+        guessed_letters.append(guess)
+        if guess not in word:
+            life -= 1
+            print("Incorrect guess!")
+            if life == 0:
+                print("Game Over! The word was:", word)
+                break
+        else:
+            print("Correct guess!")
+        elapsed_time = time.time() - start_time
+        remaining_time = 180 - elapsed_time  # 3 minutes
+        if remaining_time <= 0:
+            print("Time's up! You didn't guess the word in time. The word was:", word)
+            break
+        minutes = int(remaining_time // 60)
+        seconds = int(remaining_time % 60)
+        print(f"Time remaining: {minutes} minutes {seconds} seconds")
+
+while True:
+    level = choose_level()
+    if level == 4:
+        print("Exiting the game...")
+        break
+    describe_words(level)
+    while True:
+        play_game(level)
+        if level == 4:
+            break
+        play_again = input("Do you want to play again in the same level? (yes/no): ").lower()
+        while play_again not in ['y', 'n']:
+            play_again = input("Invalid choice. Do you want to play again in the same level? (yes/no): ").lower()
+        if play_again == 'n':
+            break
