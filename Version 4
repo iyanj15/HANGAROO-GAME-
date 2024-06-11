@@ -76,10 +76,18 @@ def play_game():
         seconds = int(remaining_time % 60)
         print(f"Time remaining: {minutes} minutes {seconds} seconds")
 
-
 while True:
-    play_game()
-    replay = input("Do you want to play again? (yes/no): ").lower()
-    if replay not in ['yes', 'y']:
-        print("Thank you for playing! Goodbye!")
-        break
+        level = choose_level()
+        describe_words(level)
+        while True:
+            play_game(level)
+            play_again = input("Do you want to play again in the same level? (yes/no): ").lower()
+            while play_again not in ['y', 'n']:
+                play_again = input("Invalid choice. Do you want to play again in the same level? (yes/no): ").lower()
+            if play_again == 'n':
+                break
+        play_again = input("Do you want to choose a different level? (yes/no): ").lower()
+        while play_again not in ['y', 'n']:
+            play_again = input("Invalid choice. Do you want to choose a different level? (yes/no): ").lower()
+        if play_again == 'n':
+            break
