@@ -1,0 +1,67 @@
+import random
+import time
+ 
+def choose_level():
+   print ("WELCOME TO HANGAROO GAME")
+   print("Choose a level:")
+   print("1. Easy")
+   print("2. Medium")
+   print("3. Hard")
+   choice = input("Enter your choice (1/2/3): ")
+   while choice not in ['1', '2', '3']:
+       choice = input("Invalid choice. Please enter 1, 2, or 3: ")
+   return int(choice)
+ 
+def describe_words(level):
+   descriptions = {
+       1: "Fruits",
+       2: "Wild Animals",
+       3: "Difficult Words"
+   }
+   print("In this level, the words are related to", descriptions[level])
+ 
+def choose_word(level):
+   words = {
+       1: ['apple', 'banana', 'orange', 'grape', 'melon', 'kiwi', 'peach', 'pear', 'plum', 'cherry'],
+       2: ['elephant', 'tiger', 'lion', 'zebra', 'giraffe', 'hippopotamus', 'rhinoceros', 'kangaroo', 'crocodile', 'monkey'],
+       3: ['abracadabra', 'onomatopoeia', 'xylophone', 'pharaoh', 'rhythm', 'mysterious', 'cryptic', 'pneumonia', 'quicksilver', 'juxtaposition']
+   }
+   return random.choice(words[level])
+ 
+ 
+level = choose_level()
+describe_words(level)
+word = choose_word(level)
+guessed_letters = []
+max_lives = 10
+lives = max_lives
+start_time = time.time()
+while lives > 0:
+   display_word = ''.join([letter if letter in guessed_letters else '?' for letter in word])
+   print("Word:", display_word)
+   if '?' not in display_word:
+       print("Congratulations! You've guessed the word:", word)
+       break
+   print("Guessed letters:", ', '.join(guessed_letters))
+   print("Lives remaining:", lives)
+   guess = input("Guess a letter: ").lower()
+   if guess in guessed_letters:
+       print("You already guessed that letter!")
+       continue
+   guessed_letters.append(guess)
+   if guess not in word:
+       lives -= 1
+       print("Incorrect guess!")
+       if lives == 0:
+           print("Game Over! The word was:", word)
+           break
+   else:
+       print("Correct guess!")
+   elapsed_time = time.time() - start_time
+   remaining_time = 180 - elapsed_time  # 3 minutes
+   if remaining_time <= 0:
+       print("Time's up! You didn't guess the word in time. The word was:", word)
+       break
+   minutes = int(remaining_time // 60)
+   seconds = int(remaining_time % 60)
+   print(f"Time remaining: {minutes} minutes {seconds} seconds")
