@@ -65,3 +65,10 @@ while lives > 0:
    minutes = int(remaining_time // 60)
    seconds = int(remaining_time % 60)
    print(f"Time remaining: {minutes} minutes {seconds} seconds")
+
+while True:
+    play_game()
+    replay = input("Do you want to play again? (yes/no): ").lower()
+    if replay not in ['yes', 'y']:
+        print("Thank you for playing! Goodbye!")
+        break
