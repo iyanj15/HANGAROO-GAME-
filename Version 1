@@ -2,7 +2,7 @@ import random
 import time
 
 def describe_words():
-    description = "Fruits"
+    description = "province in Batangas"
     print ("WELCOME TO HANGAROO GAME")
     print("The words are related to", description)
 
